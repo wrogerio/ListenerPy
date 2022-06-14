@@ -4,7 +4,7 @@ from pynput import keyboard
 import re
 
 numero = -1
-velocidade = 0.05
+velocidade = 0.3
 controller = keyboard.Controller()
 
 
@@ -21,7 +21,7 @@ def typePhrase(phrase):
     # if prhase has one letter
     if len(phrase) > 1:
         controller.press(keyboard.Key.end)
-        controller.press(keyboard.Key.enter)
+        # controller.press(keyboard.Key.enter)
 
 
 def capturar_teclas(tecla):
