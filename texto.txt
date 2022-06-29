@@ -1,0 +1,52 @@
+# ---------- Configurar o projeto Domain, criando as pastas
+Entities%eb%
+Enums%eb%
+# ---------- Criar o Enum Meio Pagamento
+MeioPagamento%eb%
+# ---------- Configurar o enum MeioPagamento
+Dinheiro = 1,%eb%
+Debito = 2,%eb%
+Credito = 3,%eb%
+Transferencia = 4,%eb%
+DebitoAutomatico = 5,%eb%
+Pix = 6%b%
+# ---------- Criar o Enum Status Lancamento
+StatusLancamento%eb%
+# ---------- Configurar o enum StatusLancamento
+Pago = 1,%eb%
+Pendente = 2%b%
+# ---------- Criar o Enum TipoLancamento
+TipoLancamento%eb%
+# ---------- Configurar o enum TipoLancamento
+Entrada = 1, %eb%
+Saida = 2%b%
+# ---------- Criar a entidade EntityBase
+EntityBase%eb%
+# ---------- Configurar a EntityBase
+<TEntity> where TEntity : class%eb%
+[Key%eb%
+[DatabaseGenerated(DatabaseGeneratedOption.Identity%eb%
+public Guid Id { get; set;%eb%
+public DateTime CreatedAt { get; set;%e% = DateTime.Now;%eb%
+public DateTime? UpdatedAt { get; set;%b%
+# ---------- Criar a entidade Fornecedor
+Fornecedor%eb%
+# ---------- Configurar a entidade Fornecedor
+: EntityBase<Fornecedor>%b%
+public string Nome { get; set;%e% = "";%e%%enter3%%b%
+// relationship 
+public virtual IEnumerable<Lancamento>? Lancamentos { get; set;%b%
+# ---------- Criar a entidade Lancamento
+Lancamento%eb%
+# ---------- Configurar a entidade Lancamento
+: EntityBase<Lancamento>%b%
+public DateTime DtLancamento { get; set;%e% = DateTime.Now;%eb%
+public string Descricao { get; set;%e% = "";%eb%
+public double Valor { get; set;%e% = 0d;%eb%
+public string Observacao { get; set;%e% = "";%eb%
+public TipoLancamento TipoLancamento { get; set;%eb%
+public MeioPagamento MeioPagamento { get; set;%eb%
+public StatusLancamento StatusLancamento { get; set;%e%%enter3%%b%
+// relationship%eb%
+public Guid FornecedorId { get; set;%eb%
+public virtual Fornecedor? Fornecedor { get; set;%b%
